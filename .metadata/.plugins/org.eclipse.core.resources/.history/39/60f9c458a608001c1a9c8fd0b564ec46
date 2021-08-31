@@ -1,0 +1,44 @@
+package com.jpa.test;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.jpa.test.dao.UserRepository;
+import com.jpa.test.entities.User;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ApplicationContext context = SpringApplication.run(Application.class, args);
+
+		UserRepository userRepository = context.getBean(UserRepository.class); // ?? how come getting a bean of
+																				// interface
+
+		// create a user object to be stored in db
+		User user = new User();
+		user.setName("Sanjeet raj");
+		user.setCity("buxar");
+		user.setStatus("Not feeling well due to fever");
+		User user2 = new User();
+		user2.setName("Rahul Chauhan");
+		user2.setCity("Patna");
+		user2.setStatus("Not feeling well due to cough");
+		User user3 = new User();
+		user3.setName("Vatsaa kumar");
+		user3.setCity("Kolkata");
+		user3.setStatus("Not feeling well due to sickness");
+
+		User user4 = userRepository.save(user); // data saved in database successfully
+		System.out.println(user4);
+		// userRepository.deleteAll();
+		User user5 = userRepository.save(user2); // data saved in database successfully
+		System.out.println(user5);
+		User user6 = userRepository.save(user3); // data saved in database successfully
+		System.out.println(user6);
+		
+		 userRepository.deleteAll();
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.jpa.test.dao;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.jpa.test.entities.User;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
+	public List<User> findByName(String name); // first name, last name, midname kch v dedo
+
+	public List<User> findByNameOrCity(String name, String city); // name ya city se matching sb dedega
+
+	public List<User> findByNameAndCity(String name, String city);
+
+	public List<User> findByNameStartingWith(String prefix);
+
+	public List<User> findByNameEndingWith(String prefix);
+}
